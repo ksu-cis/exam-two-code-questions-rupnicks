@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamTwoCodeQuestions.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,27 @@ namespace ExamTwoQuestions.PointOfSale
         public CustomizeCobblerControl()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(DataContext is Cobbler Cobbler)
+            {
+                switch (((Button)sender).Name)
+                {
+                    case "PeachButton":
+                        Cobbler.Fruit = FruitFilling.Peach;
+                        break;
+                    case "CherryButton":
+                        Cobbler.Fruit = FruitFilling.Cherry;
+                        break;
+                    case "BlueberryButton":
+                        Cobbler.Fruit = FruitFilling.Blueberry;
+                        break;
+                    default:
+                        throw new NotImplementedException("Unknown Filling Selected");
+                }
+            }
         }
     }
 }

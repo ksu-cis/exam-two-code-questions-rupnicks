@@ -6,7 +6,78 @@
              xmlns:local="clr-namespace:ExamTwoQuestions.PointOfSale"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+
+    <UserControl.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Height" Value="110"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Background="AntiqueWhite">
         <TextBlock>Customize Cobbler</TextBlock>
-    </Grid>
+        <StackPanel>
+            <CheckBox IsChecked="{Binding Path=WithIceCream}">Ice Cream
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+
+            <Label>Choose your Fruit Filling!</Label>
+
+            <Grid Height="112">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="PeachButton"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center"
+                        Content="Peach"
+                        Foreground="HotPink"
+                        Click="Button_Click" Height="112" Width="267"/>
+
+                <Button x:Name="CherryButton"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        Content="Cherry"
+                        Foreground="Red"
+                        Click="Button_Click" Height="112" Width="267"/>
+
+                <Button x:Name="BlueberryButton"
+                        Grid.Column="2"
+                        HorizontalAlignment="Center"
+                        Content="Blueberry"
+                        Foreground="Blue"
+                        Click="Button_Click" Height="112" Width="267"/>
+            </Grid>
+        </StackPanel>
+        <Label>Enjoy your Yummy Cobbler!</Label>
+    </StackPanel>
 </UserControl>
