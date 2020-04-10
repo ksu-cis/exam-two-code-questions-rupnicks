@@ -1,4 +1,13 @@
+/*Author: Nathan Bean
+ * Edited By: Samantha Rupnick
+ * Q2: Add tests to check that class implements the INotifyPropertyChanged interface
+ *  and that when a property is changed, the event handler is invoked
+ *  Class: CobblerUnitTest.cs
+ *  Purpose: Tests for the Cobbler class
+ */
+
 using System;
+using System.ComponentModel;
 using ExamTwoCodeQuestions.Data;
 using Xunit;
 
@@ -71,6 +80,60 @@ namespace ExamTwoCodeQuestions.DataTests
         {
             var cobbler = new Cobbler();
             Assert.IsAssignableFrom<IOrderItem>(cobbler);
+        }
+
+        /// <summary>
+        /// Tests to see if the cobbler implements INotifyPropertyChanged
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyPropertyChangedInterface()
+        {
+            var cobbler = new Cobbler();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(cobbler);
+        }
+
+        /// <summary>
+        /// Tests to see if changing the fruit filling invokes INotifyPropertyChanged
+        /// </summary>
+        [Fact]
+        public void ChangingFruitFillingShouldInvokeINotifyPropertyChanged()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "Fruit", () => { cobbler.Fruit = FruitFilling.Cherry; });
+            Assert.PropertyChanged(cobbler, "Fruit", () => { cobbler.Fruit = FruitFilling.Blueberry; });
+            Assert.PropertyChanged(cobbler, "Fruit", () => { cobbler.Fruit = FruitFilling.Peach; });
+        }
+
+        /// <summary>
+        /// Tests to see if changing the fruit filling invokes INotifyPropertyChanged for special instructions
+        /// </summary>
+        [Fact]
+        public void ChangingFruitFillingShouldInvokeINotifyPropertyChangedForSpecialInstructions()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "SpecialInstructions", () => { cobbler.Fruit = FruitFilling.Cherry; });
+            Assert.PropertyChanged(cobbler, "SpecialInstructions", () => { cobbler.Fruit = FruitFilling.Blueberry; });
+            Assert.PropertyChanged(cobbler, "SpecialInstructions", () => { cobbler.Fruit = FruitFilling.Peach; });
+        }
+
+        /// <summary>
+        /// Tests to see if holding ice cream invokes INotifyPropertyChanged
+        /// </summary>
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokeINotifyPropertyChanged()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "WithIceCream", () => { cobbler.WithIceCream = false; });
+        }
+
+        /// <summary>
+        /// Tests to see if changing the fruit filling invokes INotifyPropertyChanged for special instructions
+        /// </summary>
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokeINotifyPropertyChangedForSpecialInstructions()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "SpecialInstructions", () => { cobbler.WithIceCream = false; });
         }
     }
 }
